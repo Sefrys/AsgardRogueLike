@@ -1,5 +1,6 @@
 import os
-
+import sys
+import time
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
 def display_intro_screen():
