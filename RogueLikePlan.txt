@@ -11,10 +11,12 @@
 
 
 --- Menu Screen ---
-1. Hall of Fame
+1. Start game
 2. How-to-play
-3. About screen
-4. Start game
+3. Hall of Fame
+4. About screen
+5. Exit game
+
 
 --- Hall of Fame ---
 * Name | Timer (best time) | total HP lost | steps taken | monsters killed
@@ -28,4 +30,11 @@
 * What the game is about, and who made it.
 
 --- Start game ---
-* press to show map and start game
+* Character creation screen - assign certain amount of attributes to the character
+* If character created, show map
+
+--- Character creation ---
+* Choose name, class(Mage, warrior, rogue)
+* Print table with attributes unique to class
+* Request input to assign a number of attributes to the character stats.
+* Allow for resetting the attribute assignment
