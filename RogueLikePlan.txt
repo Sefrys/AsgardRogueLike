@@ -1,6 +1,10 @@
 --- Story ---
 * Norse mythology, Journey to retrieve Odin's Magical Asgardian Mead, guarded by
   the wolf Fenrir
+* Our wife has fallen sick with an incurable disease. Doctors cant help us, so we
+  consulted a local witch for aid. She gives us a drink, we drink and faint
+  and we wake up in Asgard. (after killing the final boss, we wake up in the
+  witch's hut with a jar of mead in our hand)
 
 --- Introduction Screen ---
 *  Story name >>> Menu Screen
@@ -10,7 +14,7 @@
 2. How-to-play
 3. Hall of Fame
 4. About screen
-5. Exit-game
+5. Exit game
 
 --- Start game ---
 * Character creation screen - assign certain amount of attributes to the character
