@@ -7,7 +7,7 @@
 2. Cave with items, Fenrir, mead behind the final boss, grab to get victory screen
 
 --- Introduction Screen ---
-*  Story presentation
+*  Story name >>> Menu Screen
 
 
 --- Menu Screen ---
@@ -38,3 +38,15 @@
 * Print table with attributes unique to class
 * Request input to assign a number of attributes to the character stats.
 * Allow for resetting the attribute assignment
+
+
+
+
+
+--- Game Mechanics ---
+* Movement (WSAD)
+* Combat (dice combat d12)
+* Inventory
+* Item collecting
+* Inventory item use - Potions, (skill book?)
+* Sounds???
