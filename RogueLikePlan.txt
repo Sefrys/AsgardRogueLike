@@ -10,7 +10,7 @@
 2. How-to-play
 3. Hall of Fame
 4. About screen
-5. Exit game
+5. Exit-game
 
 --- Start game ---
 * Character creation screen - assign certain amount of attributes to the character
