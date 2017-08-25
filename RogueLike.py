@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from ClassDefaultTemplates import *
 
 
 # Print story of game, wait for enter input/wait some time
@@ -69,11 +70,10 @@ def slow_print(string, delay=.03):
         time.sleep(delay)
 
 
-# Choose name, class, print attribute table, assign new
-# attributes to character. Option to reset atr. to deafult.
 def create_character():
+    '''Choose name, class, print attribute table, assign new
+       attributes to character. Option to reset atr. to deafult.'''
 
-    # ask the player for his character name and his class
     list_of_classes = ["warrior", "mage", "rogue"]
     string_ask_name = ("Welcome!" + "\n" + "What is your name, traveler?" + "\n")
     slow_print(string_ask_name)
@@ -103,34 +103,16 @@ def create_character():
     time.sleep(2)
 
     os.system('clear')
-    # default class attributes dictionaries.
-    warrior_attr_default = {'STR': 17,
-                            'DEX': 6,
-                            'INT': 7,
-                            'STA': 19}
-
-    rogue_attr_default = {'STR': 9,
-                          'DEX': 21,
-                          'INT': 9,
-                          'STA': 15}
-
-    mage_attr_default = {'STR': 5,
-                         'DEX': 12,
-                         'INT': 18,
-                         'STA': 13}
-
+    # imported default class attribute dictionaries.
     player_class_attr = print_class_attributes(player_class, warrior_attr_default,
                                                rogue_attr_default, mage_attr_default)
     time.sleep(2)
-
+    available_attribute_points = 15
     string_ask_attribute_distribution = ("\n" + "Now that we see what you can do, "
                                          + "let's improve your attributes a little."
-                                         + "\n" + "I can give you at most fifteen points to spend improving your stats."
-                                         + "\n" + "So choose wisely!" + "\n")
+                                         + "\n" + "I can give you at most " + str(available_attribute_points)
+                                         + " points to spend improving your stats." + "\n" + "So choose wisely!" + "\n")
     slow_print(string_ask_attribute_distribution)
-
-    available_attribute_points = 15
-
     # Choosing attributes to increase, and modify current class attribute dictionary
     while available_attribute_points > 0:
         # String variable incase of  input error in choosing number of points to assign
