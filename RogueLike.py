@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import collections
 from ClassDefaultTemplates import *
 
 
@@ -47,17 +48,17 @@ def print_class_attributes(player_class, warrior_attr_default, rogue_attr_defaul
 
     print("Your class attributes:" + "\n")
     if player_class == "warrior":
-        player_class_attr = warrior_attr_default
+        player_class_attr = collections.OrderedDict(sorted(warrior_attr_default.items()))
         for attr, value, in player_class_attr.items():
             print('{} ---- {}'.format(attr, value))
 
     elif player_class == "rogue":
-        player_class_attr = rogue_attr_default
+        player_class_attr = collections.OrderedDict(sorted(rogue_attr_default.items()))
         for attr, value, in player_class_attr.items():
             print('{} ---- {}'.format(attr, value))
 
     elif player_class == "mage":
-        player_class_attr = mage_attr_default
+        player_class_attr = collections.OrderedDict(sorted(mage_attr_default.items()))
         for attr, value, in player_class_attr.items():
             print('{} ---- {}'.format(attr, value))
     return(player_class_attr)
@@ -106,20 +107,23 @@ def create_character():
     # imported default class attribute dictionaries.
     player_class_attr = print_class_attributes(player_class, warrior_attr_default,
                                                rogue_attr_default, mage_attr_default)
+
     time.sleep(2)
     available_attribute_points = 15
-    string_ask_attribute_distribution = ("\n" + "Now that we see what you can do, "
-                                         + "let's improve your attributes a little."
-                                         + "\n" + "I can give you at most " + str(available_attribute_points)
-                                         + " points to spend improving your stats." + "\n" + "So choose wisely!" + "\n")
+    string_ask_attribute_distribution = ("\n" + "Now that we can see your attributes, "
+                                         + "let's improve them a little." + "\n" + "I can give you at most "
+                                         + str(available_attribute_points) + " points to spend on improving your stats."
+                                         + "\n" + "So choose wisely!" + "\n")
     slow_print(string_ask_attribute_distribution)
     # Choosing attributes to increase, and modify current class attribute dictionary
     while available_attribute_points > 0:
         # String variable incase of  input error in choosing number of points to assign
-        string_invalid_stat_increase_response = ("\n" + "I'm not sure I understand you, let's try again" + "\n")
+        string_invalid_input = ("\n" + "I'm not sure I understand you, let's try again" + "\n")
         string_out_of_points = ("\n" + "You don't have enough points to do that!" + "\n")
         string_ask_target_attribute = ("\n" + "Which attribute do you wish to improve?" + "\n")
         slow_print(string_ask_target_attribute)
+
+# ----- add limiter to attribute assigning -----
 
         # Define targeted attribute and modify it
         target_attribute = input("I wish to improve: ").upper().strip()
@@ -129,16 +133,19 @@ def create_character():
                     slow_print(string_ask_str_increase_size)
                     try:
                         str_increase = int(input("Increase it by: ").strip())
-                        player_class_attr['STR'] = player_class_attr.get('STR') + str_increase
-                        os.system('clear')
-                        print("Your class attributes:" + "\n")
-                        for attr, value, in player_class_attr.items():
-                            print('{} ---- {}'.format(attr, value))
-                        available_attribute_points -= str_increase
-                        print("Remaining attribute points: ", available_attribute_points)
+                        if str_increase <= available_attribute_points:
+                            player_class_attr['STR'] = player_class_attr.get('STR') + str_increase
+                            os.system('clear')
+                            print("Your class attributes:" + "\n")
+                            for attr, value, in player_class_attr.items():
+                                print('{} ---- {}'.format(attr, value))
+                            available_attribute_points -= str_increase
+                            print("Remaining attribute points: ", available_attribute_points)
+                        else:
+                            slow_print(string_out_of_points)
                         break
                     except ValueError:
-                        slow_print(string_ask_target_attribute)
+                        slow_print(string_invalid_input)
 
         elif target_attribute == "DEX" or target_attribute == "DEXTERITY":
             while True:
@@ -146,16 +153,19 @@ def create_character():
                     slow_print(string_ask_dex_increase_size)
                     try:
                         dex_increase = int(input("Increase it by: ").strip())
-                        player_class_attr['DEX'] = player_class_attr.get('DEX') + dex_increase
-                        os.system('clear')
-                        print("Your class attributes:" + "\n")
-                        for attr, value, in player_class_attr.items():
-                            print('{} ---- {}'.format(attr, value))
-                        available_attribute_points -= dex_increase
-                        print("Remaining attribute points: ", available_attribute_points)
+                        if dex_increase <= available_attribute_points:
+                            player_class_attr['DEX'] = player_class_attr.get('DEX') + dex_increase
+                            os.system('clear')
+                            print("Your class attributes:" + "\n")
+                            for attr, value, in player_class_attr.items():
+                                print('{} ---- {}'.format(attr, value))
+                            available_attribute_points -= dex_increase
+                            print("Remaining attribute points: ", available_attribute_points)
+                        else:
+                            slow_print(string_out_of_points)
                         break
                     except ValueError:
-                        slow_print(string_ask_target_attribute)
+                        slow_print(string_invalid_input)
 
         elif target_attribute == "INT" or target_attribute == "INTELLIGENCE":
             while True:
@@ -164,16 +174,19 @@ def create_character():
                     slow_print(string_ask_int_increase_size)
                     try:
                         int_increase = int(input("Increase it by: ").strip())
-                        player_class_attr['INT'] = player_class_attr.get('INT') + int_increase
-                        os.system('clear')
-                        print("Your class attributes:" + "\n")
-                        for attr, value, in player_class_attr.items():
-                            print('{} ---- {}'.format(attr, value))
-                        available_attribute_points -= int_increase
-                        print("Remaining attribute points: ", available_attribute_points)
+                        if int_increase <= available_attribute_points:
+                            player_class_attr['INT'] = player_class_attr.get('INT') + int_increase
+                            os.system('clear')
+                            print("Your class attributes:" + "\n")
+                            for attr, value, in player_class_attr.items():
+                                print('{} ---- {}'.format(attr, value))
+                            available_attribute_points -= int_increase
+                            print("Remaining attribute points: ", available_attribute_points)
+                        else:
+                            slow_print(string_out_of_points)
                         break
                     except ValueError:
-                        slow_print(string_ask_target_attribute)
+                        slow_print(string_invalid_input)
 
         elif target_attribute == "STA" or target_attribute == "STAMINA":
             while True:
@@ -181,7 +194,7 @@ def create_character():
                     slow_print(string_ask_sta_increase_size)
                     try:
                         sta_increase = int(input("Increase it by: ").strip())
-                        if sta_increase < available_attribute_points:
+                        if sta_increase <= available_attribute_points:
                             player_class_attr['STA'] = player_class_attr.get('STA') + sta_increase
                             os.system('clear')
                             print("Your class attributes:" + "\n")
@@ -189,11 +202,14 @@ def create_character():
                                 print('{} ---- {}'.format(attr, value))
                             available_attribute_points -= sta_increase
                             print("Remaining attribute points: ", available_attribute_points)
-                            break
                         else:
-
+                            slow_print(string_out_of_points)
+                        break
                     except ValueError:
-                        slow_print(string_ask_target_attribute)
+                        slow_print(string_invalid_input)
+
+        else:
+                slow_print(string_invalid_input)
     os.system('clear')
     print("Your class attributes:" + "\n")
     for attr, value, in player_class_attr.items():
