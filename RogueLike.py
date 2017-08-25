@@ -117,7 +117,7 @@ def create_character():
     while available_attribute_points > 0:
         # String variable incase of  input error in choosing number of points to assign
         string_invalid_stat_increase_response = ("\n" + "I'm not sure I understand you, let's try again" + "\n")
-
+        string_out_of_points = ("\n" + "You don't have enough points to do that!" + "\n")
         string_ask_target_attribute = ("\n" + "Which attribute do you wish to improve?" + "\n")
         slow_print(string_ask_target_attribute)
 
@@ -181,14 +181,17 @@ def create_character():
                     slow_print(string_ask_sta_increase_size)
                     try:
                         sta_increase = int(input("Increase it by: ").strip())
-                        player_class_attr['STA'] = player_class_attr.get('STA') + sta_increase
-                        os.system('clear')
-                        print("Your class attributes:" + "\n")
-                        for attr, value, in player_class_attr.items():
-                            print('{} ---- {}'.format(attr, value))
-                        available_attribute_points -= sta_increase
-                        print("Remaining attribute points: ", available_attribute_points)
-                        break
+                        if sta_increase < available_attribute_points:
+                            player_class_attr['STA'] = player_class_attr.get('STA') + sta_increase
+                            os.system('clear')
+                            print("Your class attributes:" + "\n")
+                            for attr, value, in player_class_attr.items():
+                                print('{} ---- {}'.format(attr, value))
+                            available_attribute_points -= sta_increase
+                            print("Remaining attribute points: ", available_attribute_points)
+                            break
+                        else:
+
                     except ValueError:
                         slow_print(string_ask_target_attribute)
     os.system('clear')
