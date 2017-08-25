@@ -24,4 +24,25 @@ def display_menu_screen():
         "_"*dash_bar, width=(indent+value_lenght + offset)))
 
 
+def menu_choose():
+        while True:
+            try:
+                choice_menu = int(input("What to you want to choose: "))
+                if choice_menu == 1:
+                    break
+                elif choice_menu == 2:
+                    break
+                elif choice_menu == 3:
+                    break
+                elif choice_menu == 4:
+                    break
+                elif choice_menu == 5:
+                    break
+                else:
+                    print("Number out of range")
+                    continue
+            except ValueError:
+                print("Invalid input")
+
 display_menu_screen()
+menu_choose()
