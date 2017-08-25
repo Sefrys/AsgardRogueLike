@@ -216,8 +216,13 @@ def create_character():
         print('{} ---- {}'.format(attr, value))
     used_all_attributes = ("\n" + "You used all of your available attribute points!" + "\n")
     slow_print(used_all_attributes)
-
-
+    # remove the prints below, presentation purpose
+    print("\n" + "Name: " + player_name)
+    print("Class: " + player_class.title())
+    print("\n" + "Attributes: ")
+    for attr, value in player_class_attr.items():
+        print('{} ---- {}'.format(attr, value))
+    print("\n")
 # TO DO:
 #       sort the printed attribute list
 #       Make so you can't assign more points to attributes than available attr.
