@@ -6,7 +6,6 @@ from menu_contents import *
 from introScreen import *
 
 
-
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
 def display_intro_screen():
@@ -35,31 +34,13 @@ def display_menu_screen():
                 about_game()
                 display_menu()
             elif choice_menu == 5:
+                exit_game()
                 os.system("clear")
-                exit()
+                display_menu()
             else:
                 print("Number out of range")
         except ValueError:
             print("Invalid input")
-
-# Info about WSAD movement, attributes and dice combat
-def menu_display_how_to_play():
-    pass
-
-
-# highscores, records --- Irek
-def menu_display_hall_of_fame():
-    pass
-
-
-# What the game is about, credits
-def menu_display_about_screen():
-    pass
-
-
-# Exits the program, ask Y/N
-def menu_exit_game():
-    pass
 
 
 # Initiates new game sequence; character creation
