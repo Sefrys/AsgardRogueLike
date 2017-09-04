@@ -1,7 +1,7 @@
 import os
 import sys
-from CharacterCreation import *
-
+from characterCreation import *
+from menu import *
 
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
@@ -11,7 +11,7 @@ def display_intro_screen():
 
 # Display menu choices
 def display_menu_screen():
-    pass
+    run_menu()
 
 
 # Info about WSAD movement, attributes and dice combat
@@ -34,7 +34,6 @@ def menu_exit_game():
     pass
 
 
-# Irek
 # Initiates new game sequence; character creation
 def menu_new_game():
     os.system("clear")
@@ -43,6 +42,7 @@ def menu_new_game():
 
 # initiates game fucntions
 def game_core():
+    display_menu_screen()
     create_character()
 
 

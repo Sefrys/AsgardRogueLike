@@ -1,4 +1,4 @@
-def display_menu_screen():
+def display_menu():
     indent = 5
     offset = 2
 #to extract to external file
@@ -27,7 +27,7 @@ def display_menu_screen():
 def menu_choose():
         while True:
             try:
-                choice_menu = int(input("What to you want to choose: "))
+                choice_menu = int(input("What do you want to choose: "))
                 if choice_menu == 1:
                     break
                 elif choice_menu == 2:
@@ -44,5 +44,7 @@ def menu_choose():
             except ValueError:
                 print("Invalid input")
 
-display_menu_screen()
-menu_choose()
+
+def run_menu():
+    display_menu()
+    menu_choose()

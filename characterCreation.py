@@ -2,7 +2,7 @@ import sys
 import os
 import time
 import collections
-from ClassDefaultTemplates import *
+import classDefaultTemplates
 
 def print_class_attributes(player_class, warrior_attr_default, rogue_attr_default, mage_attr_default):
     ''' Print out the current class attribute table.'''
