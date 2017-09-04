@@ -4,6 +4,8 @@ import time
 import collections
 import classDefaultTemplates
 
+
+
 def print_class_attributes(player_class, warrior_attr_default, rogue_attr_default, mage_attr_default):
     ''' Print out the current class attribute table.'''
 
@@ -83,8 +85,6 @@ def create_character():
         string_out_of_points = ("\n" + "You don't have enough points to do that!" + "\n")
         string_ask_target_attribute = ("\n" + "Which attribute do you wish to improve?" + "\n")
         slow_print(string_ask_target_attribute)
-
-# ----- add limiter to attribute assigning -----
 
         # Define targeted attribute and modify it
         target_attribute = input("I wish to improve: ").upper().strip()
@@ -177,14 +177,3 @@ def create_character():
         print('{} ---- {}'.format(attr, value))
     used_all_attributes = ("\n" + "You used all of your available attribute points!" + "\n")
     slow_print(used_all_attributes)
-    # remove the prints below, presentation purpose
-    print("\n" + "Name: " + player_name)
-    print("Class: " + player_class.title())
-    print("\n" + "Attributes: ")
-    for attr, value in player_class_attr.items():
-        print('{} ---- {}'.format(attr, value))
-    print("\n")
-# TO DO:
-#       sort the printed attribute list
-#       Make so you can't assign more points to attributes than available attr.
-#       i.e. if I got 8 attr, I can't assign 10 and  have -2 attr
