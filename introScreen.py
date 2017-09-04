@@ -1,11 +1,13 @@
 import sys
 import time
 
+
 def slow_print(string, delay=.001):
     for i in string:
         sys.stdout.write(i)
         sys.stdout.flush()
         time.sleep(delay)
+
 
 def introduction_title():
     ''' prints game title in ascii '''

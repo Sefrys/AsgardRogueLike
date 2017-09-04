@@ -1,3 +1,6 @@
+import sys
+import os
+
 
 def display_menu():
     indent = 5
@@ -21,3 +24,11 @@ def display_menu():
         print("{:>{width}}{:{w}}{:<}".format(i, ".", menu_options[i], width=indent, w=offset))
     print("{:>{width}}".format("_"*dash_bar, width=(indent+value_lenght + offset)))
     print("\n"*3)
+
+def instructions():
+    os.system("clear")
+    print("\nUse WSAD keys to move. \n Enter combat by walking onto an enemy, marked by X.\n Good luck!")
+
+
+def about_game():
+    print("\n This game is about this and this made by Filip Hartman and Irek Żagan")

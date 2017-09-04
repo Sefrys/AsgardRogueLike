@@ -2,7 +2,9 @@ import os
 import sys
 from characterCreation import *
 from menu import *
-from introScreen import introduction_title
+from menu_contents import *
+from introScreen import *
+
 
 
 # Print story of game, wait for enter input/wait some time
@@ -19,14 +21,22 @@ def display_menu_screen():
             choice_menu = int(input("What do you want to choose: "))
             if choice_menu == 1:
                 menu_new_game()
+                break
             elif choice_menu == 2:
-                break
+                os.system("clear")
+                instructions()
+                display_menu()
             elif choice_menu == 3:
-                break
+                os.system("clear")
+                hall_of_fame()
+                display_menu()
             elif choice_menu == 4:
-                break
+                os.system("clear")
+                about_game()
+                display_menu()
             elif choice_menu == 5:
-                break
+                os.system("clear")
+                exit()
             else:
                 print("Number out of range")
         except ValueError:
