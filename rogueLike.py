@@ -2,17 +2,35 @@ import os
 import sys
 from characterCreation import *
 from menu import *
+from introScreen import introduction_story
+
 
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
 def display_intro_screen():
-    pass
+    introduction_story()
 
 
 # Display menu choices
 def display_menu_screen():
-    run_menu()
-
+    display_menu()
+    while True:
+        try:
+            choice_menu = int(input("What do you want to choose: "))
+            if choice_menu == 1:
+                menu_new_game()
+            elif choice_menu == 2:
+                break
+            elif choice_menu == 3:
+                break
+            elif choice_menu == 4:
+                break
+            elif choice_menu == 5:
+                break
+            else:
+                print("Number out of range")
+        except ValueError:
+            print("Invalid input")
 
 # Info about WSAD movement, attributes and dice combat
 def menu_display_how_to_play():
@@ -42,8 +60,8 @@ def menu_new_game():
 
 # initiates game fucntions
 def game_core():
+    display_intro_screen()
     display_menu_screen()
-    create_character()
 
 
 def main():
