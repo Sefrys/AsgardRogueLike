@@ -2,13 +2,13 @@ import os
 import sys
 from characterCreation import *
 from menu import *
-from introScreen import introduction_story
+from introScreen import introduction_title
 
 
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
 def display_intro_screen():
-    introduction_story()
+    introduction_title()
 
 
 # Display menu choices
