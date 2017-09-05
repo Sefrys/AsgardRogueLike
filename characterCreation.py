@@ -65,7 +65,7 @@ def create_character():
     player_class_attr = print_class_attributes(attr_class, warrior, rogue, mage)
 
     time.sleep(2)
-    available_attribute_points = 15
+    available_attribute_points = 5
     string_ask_attribute_distribution = ("\nNow that we can see your attributes, "
                                          + "let's improve them a little.\nI can give you at most "
                                          + str(available_attribute_points) + " points to spend on improving your stats."

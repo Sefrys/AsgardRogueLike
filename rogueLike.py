@@ -4,7 +4,7 @@ from characterCreation import *
 from menu import *
 from menu_contents import *
 from introScreen import *
-
+from combatEngine import *
 
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
@@ -47,7 +47,10 @@ def display_menu_screen():
 def menu_new_game():
     os.system("clear")
     create_character()
+    combat_encounter()
 
+def combat_encounter():
+    combat_core()
 
 # initiates game fucntions
 def game_core():
