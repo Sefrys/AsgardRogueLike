@@ -2,7 +2,7 @@ import sys
 import os
 import time
 import collections
-from classDefaultTemplates import *
+from classTemplates import *
 
 
 
@@ -109,3 +109,8 @@ def create_character():
         print('{} ---- {}'.format(attr, value))
     used_all_attributes = ("\nYou used all of your available attribute points!\n")
     slow_print(used_all_attributes)
+
+    player_class_attr = dict(player_class_attr)
+    file_ = open('classPlayer.py', 'w')
+    file_.write('\n' + 'player_attr = ' + repr(player_class_attr) + '\n')
+    file_.close()
