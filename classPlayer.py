@@ -1,2 +1,2 @@
 
-player_attr = {'STR': 4, 'INT': 9, 'DEX': 16, 'STA': 7}
+player_attr = {'STA': 10, 'INT': 10, 'DEX': 60, 'STR': 10}

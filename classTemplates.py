@@ -1,15 +1,15 @@
 
-warrior = {'STR': 7,
-           'DEX': 6,
-           'INT': 2,
+warrior = {'STR': 10,
+           'DEX': 10,
+           'INT': 10,
            'STA': 10}
 
-rogue = {'STR': 4,
-         'DEX': 11,
-         'INT': 9,
-         'STA': 7}
+rogue = {'STR': 15,
+         'DEX': 15,
+         'INT': 15,
+         'STA': 15}
 
-mage = {'STR': 5,
-        'DEX': 7,
-        'INT': 12,
-        'STA': 6}
+mage = {'STR': 25,
+        'DEX': 25,
+        'INT': 25,
+        'STA': 25}

@@ -1,7 +1,7 @@
 import os
 import random
 import time
-from classPlayer import *
+from classPlayer import player_attr
 from classMonsters import *
 
 
@@ -78,20 +78,20 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type, d
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You dealt " + str(damage_roll) + " damage to the opponent!")
-                time.sleep(1.5)
+                time.sleep(0.3)
                 os.system('clear')
             else:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("Your attack missed!")
-                time.sleep(1.5)
+                time.sleep(0.3)
                 os.system('clear')
             # --- Victory decision
             if monster_HP <= 0:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You killed the monster")
-                time.sleep(1.5)
+                time.sleep(0.3)
                 os.system('clear')
                 break
             else:
@@ -105,20 +105,20 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type, d
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("The monster hits you for " + str(damage_roll) + " damage!")
-                time.sleep(1.5)
+                time.sleep(0.3)
                 os.system('clear')
             else:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You dodged the monster attack!")
-                time.sleep(1.5)
+                time.sleep(0.3)
                 os.system('clear')
             # --- Loss decision
             if player_HP <= 0:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You are defeated")
-                time.sleep(1.5)
+                time.sleep(0.3)
                 os.system('clear')
                 player_status = "defeated"
                 break
