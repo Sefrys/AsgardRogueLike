@@ -9,7 +9,7 @@ def monster_combat_stats(monster_type):
     monster_derived_stats = {"HP": 0, "ACC": 0, "EVA": 0}
 
     monster_derived_stats["HP"] = monster_type["STA"]*2
-    monster_derived_stats["ACC"] = monster_type["DEX"]*1.8
+    monster_derived_stats["ACC"] = monster_type["DEX"]*2
     monster_derived_stats["EVA"] = monster_type["DEX"]*1.3
 
     return(monster_derived_stats)
@@ -22,7 +22,7 @@ def player_combat_stats():
     player_derived_stats = {"HP": 0, "ACC": 0, "EVA": 0}
 
     player_derived_stats["HP"] = player_attr["STA"]*2
-    player_derived_stats["ACC"] = player_attr["DEX"]*1.8
+    player_derived_stats["ACC"] = player_attr["DEX"]*2
     player_derived_stats["EVA"] = player_attr["DEX"]*1.3
 
     return(player_derived_stats)
@@ -80,24 +80,28 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type, d
             player_miss_chance = monster_EVA + dice_12_roll()
             if player_hit_accuracy > player_miss_chance:
                 damage_roll = player_attr["STR"] - dice_6_roll()
-                monster_HP -= damage_roll
+                if damage_roll > 0:
+                    monster_HP -= damage_roll
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
-                print("You dealt " + str(damage_roll) + " damage to the opponent!")
-                time.sleep(0.3)
+                if damage_roll > 0:
+                    print("You dealt " + str(damage_roll) + " damage to the opponent!")
+                else:
+                    print("You dealt no damage!")
+                time.sleep(1.0)
                 os.system('clear')
             else:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("Your attack missed!")
-                time.sleep(0.3)
+                time.sleep(1.0)
                 os.system('clear')
             # --- Victory decision
             if monster_HP <= 0:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You killed the monster")
-                time.sleep(0.3)
+                time.sleep(1.0)
                 os.system('clear')
                 break
             else:
@@ -107,24 +111,28 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type, d
             monster_miss_chance = player_EVA + dice_12_roll()
             if monster_hit_accuracy > monster_miss_chance:
                 damage_roll = monster_type["STR"] - dice_6_roll()
-                player_HP -= damage_roll
+                if damage_roll > 0:
+                    player_HP -= damage_roll
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
-                print("The monster hits you for " + str(damage_roll) + " damage!")
-                time.sleep(0.3)
+                if damage_roll > 0:
+                    print("The monster hits you for " + str(damage_roll) + " damage!")
+                else:
+                    print("The monster dealt no damage!")
+                time.sleep(1.0)
                 os.system('clear')
             else:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You dodged the monster attack!")
-                time.sleep(0.3)
+                time.sleep(1.0)
                 os.system('clear')
             # --- Loss decision
             if player_HP <= 0:
                 print("Player HP: ", player_HP)
                 print("Opponent HP: ", monster_HP)
                 print("You are defeated")
-                time.sleep(0.3)
+                time.sleep(1.0)
                 os.system('clear')
                 player_status = "defeated"
                 break

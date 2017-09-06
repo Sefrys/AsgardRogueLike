@@ -4,7 +4,7 @@ import os
 
 def instructions():
     os.system("clear")
-    print("\nUse WSAD keys to move. \n Enter combat by walking onto an enemy, marked by X.\n Good luck!")
+    print("\nUse WSAD keys to move. \n Enter combat by walking onto an enemy, marked by & symbol.\n Good luck!")
 
 
 def about_game():

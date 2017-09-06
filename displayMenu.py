@@ -1,7 +1,6 @@
 def display_menu():
     indent = 5
     offset = 2
-    # to extract to external file
     menu_options = {1: "Start game",
                     2: "How-to-play",
                     3: "Hall of Fame",

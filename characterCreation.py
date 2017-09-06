@@ -12,7 +12,7 @@ def print_class_attributes(attr_class, warrior, rogue, mage):
     print("Your class attributes:\n")
     player_class_attr = collections.OrderedDict(sorted(attr_class.items()))
     for attr, value, in player_class_attr.items():
-        print('{} ---- {}'.format(attr, value))
+        print("{} ---- {}".format(attr, value))
     return(player_class_attr)
 
 
@@ -35,21 +35,21 @@ def create_character():
         player_name = input("My name is: ").title().strip()
         if all(x.isalpha() or x.isspace() for x in player_name):
             string_answer_valid_name = ("Very well, nice to meet you, " + player_name + ".\n"
-                                        + "Now, are you a warrior, a mage, or a rogue?" + "\n")
+                                        + "Now, are you a warrior, a mage, or a rogue?\n")
             slow_print(string_answer_valid_name)
             break
         else:
-            string_answer_invalid_name = ("I'm sorry, you have to tell me your real name. " + "\n")
+            string_answer_invalid_name = ("I'm sorry, you have to tell me your real name.\n")
             slow_print(string_answer_invalid_name)
 
     while True:
         player_class = input("I am a: ").lower().strip()
         if player_class not in list_of_classes:
-            string_answer_invalid_class = ("Surely you jest, you must be either a warrior, a mage, or a rogue!" + "\n")
+            string_answer_invalid_class = ("Surely you jest, you must be either a warrior, a mage, or a rogue!\n")
             slow_print(string_answer_invalid_class)
 
         else:
-            string_answer_valid_class = ("A " + player_class + "? Good. Let's see what you are capable of then!" + "\n")
+            string_answer_valid_class = ("A " + player_class + "? Good. Let's see what you are capable of then!\n")
             slow_print(string_answer_valid_class)
             break
     if player_class == "warrior":
@@ -60,12 +60,12 @@ def create_character():
         attr_class = rogue
     time.sleep(0)
 
-    os.system('clear')
+    os.system("clear")
     # imported default class attribute dictionaries.
     player_class_attr = print_class_attributes(attr_class, warrior, rogue, mage)
 
     time.sleep(0)
-    available_attribute_points = 50
+    available_attribute_points = 5
     string_ask_attribute_distribution = ("\nNow that we can see your attributes, "
                                          + "let's improve them a little.\nI can give you at most "
                                          + str(available_attribute_points) + " points to spend on improving your stats."
@@ -84,16 +84,17 @@ def create_character():
         atr_list = ["STR", "DEX", "STA", "INT"]
         if target_attribute in atr_list:
             while True:
-                    string_ask_atr_increase_size = ("\nHow many points do you wish to assign to {}?\n".format(target_attribute.upper()))
+                    string_ask_atr_increase_size = ("\nHow many points do you wish to assign to {}?\n".format
+                                                    (target_attribute.upper()))
                     slow_print(string_ask_atr_increase_size)
                     try:
                         atr_increase = int(input("Increase it by: ").strip())
                         if atr_increase <= available_attribute_points:
                             player_class_attr[str(target_attribute).upper()] = player_class_attr.get(str(target_attribute).upper()) + atr_increase
-                            os.system('clear')
+                            os.system("clear")
                             print("Your class attributes:\n")
                             for attr, value, in player_class_attr.items():
-                                print('{} ---- {}'.format(attr, value))
+                                print("{} ---- {}".format(attr, value))
                             available_attribute_points -= atr_increase
                             print("Remaining attribute points: ", available_attribute_points)
                         else:
@@ -103,15 +104,14 @@ def create_character():
                         slow_print(string_invalid_input)
         else:
             slow_print(string_invalid_input)
-    os.system('clear')
+    os.system("clear")
     print("Your class attributes:\n")
     for attr, value, in player_class_attr.items():
-        print('{} ---- {}'.format(attr, value))
+        print("{} ---- {}".format(attr, value))
     used_all_attributes = ("\nYou used all of your available attribute points!\n")
     slow_print(used_all_attributes)
 
     player_class_attr = dict(player_class_attr)
 
-    file_ = open('classPlayer.py', 'w')
-    file_.write(repr(player_class_attr))
-    file_.close()
+    with open('classPlayer.py', 'w') as file_:
+        file_.write(repr(player_class_attr))

@@ -2,10 +2,10 @@ import os
 import sys
 from characterCreation import *
 from displayMenu import *
-from menu_contents import *
+from menuContents import *
 from introScreen import *
 from combatEngine import *
-from movement import *
+from movementMapDisplay import *
 
 
 # Print story of game, wait for enter input/wait some time
@@ -38,8 +38,8 @@ def display_menu_screen():
                 display_menu()
             else:
                 print("Number out of range")
-        except TypeError:
-            print("Invalid input")
+        except ValueError:
+            print("Invalid menu choice input")
 
 
 # Initiates new game sequence; character creation
