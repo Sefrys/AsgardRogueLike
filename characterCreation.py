@@ -34,6 +34,9 @@ def create_character():
     while True:
         player_name = input("My name is: ").title().strip()
         if all(x.isalpha() or x.isspace() for x in player_name):
+            with open('currentSessionScore.csv', 'a') as highscore_file:
+                highscore_file.write(player_name)
+
             string_answer_valid_name = ("Very well, nice to meet you, " + player_name + ".\n"
                                         + "Now, are you a warrior, a mage, or a rogue?\n")
             slow_print(string_answer_valid_name)
