@@ -5,6 +5,11 @@ import ast
 from classMonsters import *
 
 
+def wait():
+    '''Waits for enter input'''
+    input("\nPress enter to continue")
+
+
 def monster_combat_stats(monster_type):
     '''Derive combat attributes from basic attributes attributes'''
     monster_derived_stats = {"HP": 0, "ACC": 0, "EVA": 0}
@@ -97,18 +102,18 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
                     print("You dealt " + str(damage_roll) + " damage to the opponent!")
                 else:
                     print("You dealt no damage!")
-                time.sleep(1.0)
+                    wait()
                 os.system('clear')
             else:
                 print("Player HP: " + str(player_HP) + "\nOpponent HP: " + str(monster_HP))
                 print("Your attack missed!")
-                time.sleep(1.0)
+                wait()
                 os.system('clear')
             # --- Victory decision
             if monster_HP <= 0:
                 print("Player HP: " + str(player_HP) + "\nOpponent HP: " + str(monster_HP))
                 print("You killed the monster")
-                time.sleep(1.0)
+                wait()
                 os.system('clear')
                 break
             else:
@@ -125,19 +130,18 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
                     print("The monster hits you for " + str(damage_roll) + " damage!")
                 else:
                     print("The monster dealt no damage!")
-
-                time.sleep(1.0)
+                    wait()
                 os.system('clear')
             else:
                 print("Player HP: " + str(player_HP) + "\nOpponent HP: " + str(monster_HP))
                 print("You dodged the monster attack!")
-                time.sleep(1.0)
+                wait()
                 os.system('clear')
             # --- Loss decision
             if player_HP <= 0:
                 print("Player HP: " + str(player_HP) + "\nOpponent HP: " + str(monster_HP))
                 print("You are defeated")
-                time.sleep(1.0)
+                wait()
                 os.system('clear')
                 player_status = "defeated"
                 break
