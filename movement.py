@@ -1,6 +1,6 @@
 from combatEngine import *
-from classPlayer import player_attr
 import os
+import ast
 
 def getch():
     import sys, tty, termios
@@ -23,19 +23,24 @@ def generate_map(level="mapTest.txt"):
 
 
 def movement_hero(mapLevel, hero_symbol="◙", wall_symbol=["≈", "#"],
-                  entrance_symbol="D", path_symbol=" ", monster_symbol = "*"):
+                  entrance_symbol="D", path_symbol=" ", monster_symbol="*"):
+
     x_hero = 2
     y_hero = 7
     hero_step = 1
     mapLevel[y_hero][x_hero] = hero_symbol
     os.system('clear')
-
     while True:
         for i in mapLevel:
             print(*i)
 
-        for attr, value, in player_attr.items():
+        with open('classPlayer.py') as class_file:
+            player_stats = ast.literal_eval(class_file.readline())
+
+        for attr, value, in player_stats.items():
             print('{} ---- {}'.format(attr, value))
+
+
         key = getch()
         os.system('clear')
         if key == "q":

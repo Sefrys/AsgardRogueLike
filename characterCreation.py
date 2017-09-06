@@ -111,6 +111,7 @@ def create_character():
     slow_print(used_all_attributes)
 
     player_class_attr = dict(player_class_attr)
+
     file_ = open('classPlayer.py', 'w')
-    file_.write('\n' + 'player_attr = ' + repr(player_class_attr) + '\n')
+    file_.write(repr(player_class_attr))
     file_.close()

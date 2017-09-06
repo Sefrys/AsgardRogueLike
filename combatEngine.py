@@ -1,7 +1,7 @@
 import os
 import random
 import time
-from classPlayer import player_attr
+import ast
 from classMonsters import *
 
 
@@ -16,6 +16,9 @@ def monster_combat_stats(monster_type):
 
 
 def player_combat_stats():
+    with open('classPlayer.py') as class_file:
+        player_attr = ast.literal_eval(class_file.readline())
+
     player_derived_stats = {"HP": 0, "ACC": 0, "EVA": 0}
 
     player_derived_stats["HP"] = player_attr["STA"]*2
@@ -49,6 +52,9 @@ def combat_ui(monster_name, player_derived_stats, monster_derived_stats,
 
 
 def combat_sequence(player_derived_stats, monster_derived_stats, monster_type, dice_12_roll, dice_20_roll, dice_6_roll):
+
+    with open('classPlayer.py') as class_file:
+        player_attr = ast.literal_eval(class_file.readline())
 
     # get monster and player combat stats
     monster_HP = monster_derived_stats["HP"]

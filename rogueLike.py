@@ -38,7 +38,7 @@ def display_menu_screen():
                 display_menu()
             else:
                 print("Number out of range")
-        except ValueError:
+        except TypeError:
             print("Invalid input")
 
 
