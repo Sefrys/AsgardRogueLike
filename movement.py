@@ -1,3 +1,5 @@
+from gameBoard import *
+import os
 
 def getch():
     import sys, tty, termios
@@ -21,7 +23,7 @@ def generate_map(level="mapTest.txt"):
 
 def movement_hero(mapLevel, hero_symbol="@", wall_symbol="X",
                   entrance_symbol="D", path_symbol=" "):
-    x_hero = 1
+    x_hero = 2
     y_hero = 14
     hero_step = 1
     mapLevel[y_hero][x_hero] = hero_symbol
@@ -29,7 +31,7 @@ def movement_hero(mapLevel, hero_symbol="@", wall_symbol="X",
         for i in mapLevel:
             print(*i)
         key = getch()
-
+        os.system('clear')
         if key == "q":
             break
 
@@ -60,10 +62,7 @@ def movement_hero(mapLevel, hero_symbol="@", wall_symbol="X",
         mapLevel[y_hero][x_hero] = hero_symbol
 
 
-def main():
+def movement_core():
     mapLevel = generate_map("mapMaze.txt")
-    movement_hero(mapLevel)
-
-
-if __name__ == "__main__":
-    main()
+    game_board = create_board(mapLevel)
+    movement_hero(game_board)
