@@ -58,13 +58,13 @@ def create_character():
         attr_class = mage
     elif player_class == "rogue":
         attr_class = rogue
-    time.sleep(2)
+    time.sleep(0)
 
     os.system('clear')
     # imported default class attribute dictionaries.
     player_class_attr = print_class_attributes(attr_class, warrior, rogue, mage)
 
-    time.sleep(2)
+    time.sleep(0)
     available_attribute_points = 5
     string_ask_attribute_distribution = ("\nNow that we can see your attributes, "
                                          + "let's improve them a little.\nI can give you at most "

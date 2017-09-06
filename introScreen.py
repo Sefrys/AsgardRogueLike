@@ -2,7 +2,7 @@ import sys
 import time
 
 
-def slow_print(string, delay=.001):
+def slow_print(string, delay=0):
     for i in string:
         sys.stdout.write(i)
         sys.stdout.flush()
