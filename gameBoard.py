@@ -1,8 +1,8 @@
 from movement import *
 
 
-def create_board(levelMap, heroStats):
-    interior_width = len(levelMap[0]) + len(heroStats[0])
+def create_board(levelMap):
+    interior_width = len(levelMap[0])
     interior_height = len(levelMap)
     boundary = 2
     width = int(interior_width) + boundary
@@ -16,6 +16,10 @@ def create_board(levelMap, heroStats):
     for row in range(1, int(height)-1):
         game_board[row][0] = "X"
         game_board[row][-1] = "X"
+
+    for row in range(1, interior_width - 1):
+        for col in range(1, interior_height - 1):
+            game_board[col][row] = levelMap[col-1][row-1]
     return game_board
 
 
@@ -28,7 +32,9 @@ def main():
 
     levelMap = generate_map("mapMaze.txt")
     heroStats = generate_map("mapTest.txt")
-    board = create_board(levelMap, heroStats)
+    board = create_board(levelMap)
+
+
     print_board(board)
 
 
