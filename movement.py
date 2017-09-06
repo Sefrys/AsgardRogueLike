@@ -19,10 +19,10 @@ def generate_map(level="mapTest.txt"):
     return levelMap
 
 
-def movement_hero(mapLevel, hero_symbol="@", wall_symbol="#",
-                  entrance_symbol="D", path_symbol="."):
+def movement_hero(mapLevel, hero_symbol="@", wall_symbol="X",
+                  entrance_symbol="D", path_symbol=" "):
     x_hero = 1
-    y_hero = 1
+    y_hero = 14
     hero_step = 1
     mapLevel[y_hero][x_hero] = hero_symbol
     while True:
@@ -61,7 +61,7 @@ def movement_hero(mapLevel, hero_symbol="@", wall_symbol="#",
 
 
 def main():
-    mapLevel = generate_map()
+    mapLevel = generate_map("mapMaze.txt")
     movement_hero(mapLevel)
 
 
