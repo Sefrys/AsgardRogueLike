@@ -31,7 +31,7 @@ def player_combat_stats():
 
 
 def encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
-              monster_type, dice_12_roll, dice_20_roll, dice_6_roll):
+                 monster_type, dice_12_roll, dice_20_roll, dice_6_roll):
     '''Open screen with choices upon monster encounter'''
     os.system('clear')
     print("You've encountered a " + monster_name + "!\n")
@@ -125,6 +125,7 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
                     print("The monster hits you for " + str(damage_roll) + " damage!")
                 else:
                     print("The monster dealt no damage!")
+
                 time.sleep(1.0)
                 os.system('clear')
             else:
