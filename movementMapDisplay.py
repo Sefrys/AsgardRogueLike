@@ -37,7 +37,12 @@ def movement_hero(mapLevel, hero_symbol="♦", wall_symbol=["◙", "#"],
     hero_step = 1
     mapLevel[hero_y_position][hero_x_position] = hero_symbol
     os.system('clear')
+    next_map = False
     while True:
+
+        if next_map is True:
+            mapLevel = generate_map("mapTwo.txt")
+            movement_hero(mapLevel)
 
         with open('classPlayer.py') as class_file:
             player_stats = ast.literal_eval(class_file.readline())
@@ -77,6 +82,9 @@ def movement_hero(mapLevel, hero_symbol="♦", wall_symbol=["◙", "#"],
                not mapLevel[hero_y_position][hero_x_position + hero_step] == entrance_symbol):
                 mapLevel[hero_y_position][hero_x_position] = path_symbol
                 hero_x_position += hero_step
+            if mapLevel[hero_y_position][hero_x_position + hero_step] in "→":
+                next_map = True
+
 
         if mapLevel[hero_y_position][hero_x_position] == monster_symbol:
             combat_core()
@@ -85,5 +93,5 @@ def movement_hero(mapLevel, hero_symbol="♦", wall_symbol=["◙", "#"],
 
 
 def movement_core():
-    mapLevel = generate_map("mapMaze.txt")
+    mapLevel = generate_map("mapOne.txt")
     movement_hero(mapLevel)
