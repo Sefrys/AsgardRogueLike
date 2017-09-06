@@ -1,4 +1,5 @@
 def display_menu():
+    '''Display menu options in a stylized format'''
     indent = 5
     offset = 2
     menu_options = {1: "Start game",
