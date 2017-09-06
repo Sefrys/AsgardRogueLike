@@ -1,21 +1,23 @@
 import os
 import sys
-from characterCreation import *
-from displayMenu import *
-from menuContents import *
 from introScreen import *
-from combatEngine import *
+from menuContents import *
+from displayMenu import *
+from characterCreation import *
 from movementMapDisplay import *
+from combatEngine import *
 
 
 # Print story of game, wait for enter input/wait some time
 # to call display_menu_screen.
 def display_intro_screen():
+    '''Displays the introduction screen'''
     introduction_title()
 
 
 # Display menu choices
 def display_menu_screen():
+    '''Displays the menu screen and asks for sub-menu choice'''
     display_menu()
     while True:
         try:
@@ -44,23 +46,22 @@ def display_menu_screen():
 
 # Initiates new game sequence; character creation
 def menu_new_game():
+    '''Starts a new game'''
     os.system("clear")
     create_character()
     movement_core()
 
 
 def combat_encounter():
+    '''Runs the combat engine upon combat encounter'''
     combat_core()
 
 
-# initiates game fucntions
-def game_core():
+def main():
+    '''Initializes the game content'''
     display_intro_screen()
     display_menu_screen()
 
 
-def main():
-    game_core()
-
-
-main()
+if __name__ == "__main__":
+    main()
