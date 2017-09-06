@@ -8,6 +8,7 @@ from combatEngine import *
 
 
 def getch():
+    '''Read key input without pressing enter'''
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
@@ -19,30 +20,33 @@ def getch():
 
 
 def generate_map(level="mapTest.txt"):
-    levelMap = []
+    '''Generates level map from separate file'''
+    level_map = []
     with open(level, "r") as mapFile:
         for line in mapFile:
             for element in line:
                 element.strip("")
-            levelMap.append(list(line.rstrip()))
-    return levelMap
+            level_map.append(list(line.rstrip()))
+    return level_map
 
 
-def movement_hero(mapLevel, hero_symbol="♦", wall_symbol=["◙", "#"],
+def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
                   entrance_symbol="D", path_symbol=" ", monster_symbol="&"):
-
-    step_count = 0
+    '''Hero movement (WSAD) and displays the level map on screen.'''
     hero_x_position = 1
     hero_y_position = 7
     hero_step = 1
-    mapLevel[hero_y_position][hero_x_position] = hero_symbol
-    os.system('clear')
+    map_level[hero_y_position][hero_x_position] = hero_symbol
     next_map = False
+    os.system('clear')
     while True:
 
         if next_map is True:
-            mapLevel = generate_map("mapTwo.txt")
-            movement_hero(mapLevel)
+            map_level = generate_map("mapTwo.txt")
+            movement_and_map_display(map_level)
+
+        for char in map_level:
+            print(*char)
 
         with open('classPlayer.py') as class_file:
             player_stats = ast.literal_eval(class_file.readline())
@@ -51,47 +55,44 @@ def movement_hero(mapLevel, hero_symbol="♦", wall_symbol=["◙", "#"],
         for attr, value, in player_stats.items():
             print('{} ---- {}'.format(attr, value))
 
-        for i in mapLevel:
-            print(*i)
-
         key = getch()
         os.system('clear')
         if key == "q":
             break
 
         if key == "w":
-            if (not mapLevel[hero_y_position - hero_step][hero_x_position] in wall_symbol and
-               not mapLevel[hero_y_position - hero_step][hero_x_position] == entrance_symbol):
-                mapLevel[hero_y_position][hero_x_position] = path_symbol
+            if (not map_level[hero_y_position - hero_step][hero_x_position] in wall_symbol and
+               not map_level[hero_y_position - hero_step][hero_x_position] == entrance_symbol):
+                map_level[hero_y_position][hero_x_position] = path_symbol
                 hero_y_position -= hero_step
 
         if key == "s":
-            if (not mapLevel[hero_y_position + hero_step][hero_x_position] in wall_symbol and
-               not mapLevel[hero_y_position + hero_step][hero_x_position] == entrance_symbol):
-                mapLevel[hero_y_position][hero_x_position] = path_symbol
+            if (not map_level[hero_y_position + hero_step][hero_x_position] in wall_symbol and
+               not map_level[hero_y_position + hero_step][hero_x_position] == entrance_symbol):
+                map_level[hero_y_position][hero_x_position] = path_symbol
                 hero_y_position += hero_step
 
         if key == "a":
-            if (not mapLevel[hero_y_position][hero_x_position - hero_step] in wall_symbol and
-               not mapLevel[hero_y_position][hero_x_position - hero_step] == entrance_symbol):
-                mapLevel[hero_y_position][hero_x_position] = path_symbol
+            if (not map_level[hero_y_position][hero_x_position - hero_step] in wall_symbol and
+               not map_level[hero_y_position][hero_x_position - hero_step] == entrance_symbol):
+                map_level[hero_y_position][hero_x_position] = path_symbol
                 hero_x_position -= hero_step
 
         if key == "d":
-            if (not mapLevel[hero_y_position][hero_x_position + hero_step] in wall_symbol and
-               not mapLevel[hero_y_position][hero_x_position + hero_step] == entrance_symbol):
-                mapLevel[hero_y_position][hero_x_position] = path_symbol
+            if (not map_level[hero_y_position][hero_x_position + hero_step] in wall_symbol and
+               not map_level[hero_y_position][hero_x_position + hero_step] == entrance_symbol):
+                map_level[hero_y_position][hero_x_position] = path_symbol
                 hero_x_position += hero_step
-            if mapLevel[hero_y_position][hero_x_position + hero_step] in "→":
+            if map_level[hero_y_position][hero_x_position + hero_step] in "→":
                 next_map = True
 
-
-        if mapLevel[hero_y_position][hero_x_position] == monster_symbol:
+        if map_level[hero_y_position][hero_x_position] == monster_symbol:
             combat_core()
 
-        mapLevel[hero_y_position][hero_x_position] = hero_symbol
+        map_level[hero_y_position][hero_x_position] = hero_symbol
 
 
 def movement_core():
-    mapLevel = generate_map("mapOne.txt")
-    movement_hero(mapLevel)
+    '''Initializes movement and map display'''
+    map_level = generate_map("mapOne.txt")
+    movement_and_map_display(map_level)
