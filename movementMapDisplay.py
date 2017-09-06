@@ -29,8 +29,12 @@ def generate_map(level="mapTest.txt"):
             level_map.append(list(line.rstrip()))
     return level_map
 
+def display_map(map_level):
+    for char in map_level:
+        print(*char)
 
-def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
+
+def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
                              entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
                              wolf_symbol="☼"):
     '''Hero movement (WSAD) and displays the level map on screen.'''
@@ -44,10 +48,9 @@ def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "
 
         if next_map is True:
             map_level = generate_map("mapTwo.txt")
-            movement_and_map_display(map_level)
+            movement(map_level)
 
-        for char in map_level:
-            print(*char)
+        display_map(map_level)
 
         with open('classPlayer.py') as class_file:
             player_stats = ast.literal_eval(class_file.readline())
@@ -58,8 +61,10 @@ def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "
 
         key = getch()
         os.system('clear')
+
+        # emergency exit
         if key == "q":
-            break
+            exit()
 
         if key == "w":
             if (not map_level[hero_y_position - hero_step][hero_x_position] in wall_symbol and
@@ -98,4 +103,4 @@ def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "
 def movement_core():
     '''Initializes movement and map display'''
     map_level = generate_map("mapOne.txt")
-    movement_and_map_display(map_level)
+    movement(map_level)
