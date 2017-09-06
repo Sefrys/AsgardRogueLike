@@ -31,7 +31,8 @@ def generate_map(level="mapTest.txt"):
 
 
 def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
-                  entrance_symbol="D", path_symbol=" ", monster_symbol="&"):
+                             entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
+                             wolf_symbol="☼"):
     '''Hero movement (WSAD) and displays the level map on screen.'''
     hero_x_position = 1
     hero_y_position = 7
@@ -86,8 +87,10 @@ def movement_and_map_display(map_level, hero_symbol="♦", wall_symbol=["◙", "
             if map_level[hero_y_position][hero_x_position + hero_step] in "→":
                 next_map = True
 
-        if map_level[hero_y_position][hero_x_position] == monster_symbol:
-            combat_core()
+        if map_level[hero_y_position][hero_x_position] == cave_bat_symbol:
+            combat_core(monster_type=cave_bat, monster_name="Cave Bat")
+        elif map_level[hero_y_position][hero_x_position] == wolf_symbol:
+            combat_core(monster_type=wolf, monster_name="Wolf")
 
         map_level[hero_y_position][hero_x_position] = hero_symbol
 

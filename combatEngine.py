@@ -163,10 +163,8 @@ def dice_6_roll():
     return(d6_roll)
 
 
-def combat_core():
+def combat_core(monster_type=None, monster_name=None):
     '''Main function executing the whole combat scenario'''
-    monster_type = cave_bat
-    monster_name = cave_bat_name
     monster_derived_stats = monster_combat_stats(monster_type)
     player_derived_stats = player_combat_stats()
     encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
