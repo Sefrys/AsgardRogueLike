@@ -41,7 +41,6 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
     '''Hero movement (WSAD) and displays the level map on screen.'''
     hero_x_position = 1
     hero_y_position = 7
-    steps_taken = 0
     hero_step = 1
     map_level[hero_y_position][hero_x_position] = hero_symbol
     next_map = False
@@ -101,7 +100,6 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
             combat_core(monster_type=wolf, monster_name="Wolf")
 
         map_level[hero_y_position][hero_x_position] = hero_symbol
-        steps_taken += 1
 
 def movement_core():
     '''Initializes movement and map display'''
