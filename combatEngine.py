@@ -36,7 +36,7 @@ def player_combat_stats():
     return(player_derived_stats)
 
 
-def encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
+def encounter_ui(damage_taken, monster_name, player_derived_stats, monster_derived_stats,
                  monster_type, dice_12_roll, dice_20_roll, dice_6_roll):
     '''Open screen with choices upon monster encounter'''
     os.system('clear')
@@ -47,13 +47,14 @@ def encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
         if encounter_choice.isalpha() and encounter_choice in encounter_choices:
             if encounter_choice == "FIGHT":
                 os.system('clear')
-                combat_sequence(player_derived_stats, monster_derived_stats,
-                                monster_type, dice_12_roll, dice_20_roll, dice_6_roll)
-                break
+                damage_taken = combat_sequence(damage_taken, player_derived_stats, monster_derived_stats,
+                                               monster_type, dice_12_roll, dice_20_roll, dice_6_roll)
+                return(damage_taken)
             elif encounter_choice == "RUN":
                 print("Coward!")
                 os.system('clear')
-                break
+                damage_taken = 0
+                return(damage_taken)
             elif encounter_choice == "GIVE UP":
                 game_over()
                 wait()
@@ -62,7 +63,7 @@ def encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
             print("Invalid input, try again.\n")
 
 
-def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
+def combat_sequence(damage_taken, player_derived_stats, monster_derived_stats, monster_type,
                     dice_12_roll, dice_20_roll, dice_6_roll):
     '''Combat sequence: first both monster and player roll for initiative,
         the one with the highest initiative starts first.
@@ -71,9 +72,9 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
         and the damage is subtracted from the HP pool.
         Turns are repeated until someone dies.'''
 
+    
     with open('classPlayer.py') as class_file:
         player_attr = ast.literal_eval(class_file.readline())
-
     # get monster and player combat stats
     monster_HP = monster_derived_stats["HP"]
     monster_ACC = monster_derived_stats["ACC"]
@@ -130,6 +131,7 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
                 damage_roll = monster_type["STR"] - dice_6_roll()
                 if damage_roll > 0:
                     player_HP -= damage_roll
+                    damage_taken += damage_roll
                 print("Player HP: " + str(player_HP) + "\nOpponent HP: " + str(monster_HP))
                 if damage_roll > 0:
                     print("The monster hits you for " + str(damage_roll) + " damage!")
@@ -153,7 +155,7 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
                 exit()
             else:
                 player_turn = True
-
+    return(damage_taken)
 
 def dice_20_roll():
     '''Twenty sided dice thrown, returning the result'''
@@ -173,9 +175,10 @@ def dice_6_roll():
     return(d6_roll)
 
 
-def combat_core(monster_type=None, monster_name=None):
+def combat_core(damage_taken, monster_type=None, monster_name=None):
     '''Main function executing the whole combat scenario'''
     monster_derived_stats = monster_combat_stats(monster_type)
     player_derived_stats = player_combat_stats()
-    encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
-                 monster_type, dice_12_roll, dice_20_roll, dice_6_roll)
+    damage_taken = encounter_ui(damage_taken, monster_name, player_derived_stats, monster_derived_stats,
+                                monster_type, dice_12_roll, dice_20_roll, dice_6_roll)
+    return(damage_taken)

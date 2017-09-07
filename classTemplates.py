@@ -2,7 +2,7 @@
 warrior = {'STR': 7,
            'DEX': 4,
            'INT': 1,
-           'STA': 9}
+           'STA': 999}
 
 rogue = {'STR': 5,
          'DEX': 9,

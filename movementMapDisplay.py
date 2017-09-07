@@ -42,8 +42,8 @@ def display_map(map_level):
 def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
              entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
              wolf_symbol="☼", boss_symbol="%"):
-
     '''Hero movement (WSAD) and displays the level map on screen.'''
+    damage_taken = 0
     hero_x_position = 1
     hero_y_position = 7
     hero_step = 1
@@ -54,7 +54,9 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
 
         if next_map is True:
             map_level = generate_map("mapTwo.txt")
-            movement(map_level)
+            movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
+                         entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
+                         wolf_symbol="☼", boss_symbol="%" )
 
         display_map(map_level)
 
@@ -99,12 +101,14 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
                 next_map = True
 
         if map_level[hero_y_position][hero_x_position] == cave_bat_symbol:
-            combat_core(monster_type=cave_bat, monster_name="Cave Bat")
+            damage_taken += combat_core(damage_taken, monster_type=cave_bat, monster_name="Cave Bat")
 
         elif map_level[hero_y_position][hero_x_position] == wolf_symbol:
-            combat_core(monster_type=wolf, monster_name="Wolf")
+            damage_taken += combat_core(damage_taken, monster_type=wolf, monster_name="Wolf")
 
         elif map_level[hero_y_position][hero_x_position] == boss_symbol:
+            with open('exportedNameClassHP.csv', 'a') as hp_export:
+                hp_export.write("\n" + str(damage_taken))
             string_boss_encounter = ("You encountered the big bad boss!" +
                                      "\nGuess what the three numbers are to win, or else, you'll die miserably!\n")
             slow_print(string_boss_encounter)

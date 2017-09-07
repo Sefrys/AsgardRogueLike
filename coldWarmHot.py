@@ -4,13 +4,6 @@ import time
 from characterCreation import slow_print
 
 
-def slow_print(string, delay=.03):
-    for i in string:
-        sys.stdout.write(i)
-        sys.stdout.flush()
-        time.sleep(delay)
-
-
 def get_random_digits():
     correct_answer = []
     while len(correct_answer) < 3:
@@ -60,6 +53,8 @@ def initiate_how_warm_cold():
         result = compare_user_input_with_answer(user_guess, correct_answer)
         print(" ".join(result))
         if check_result(result):
+            with open('exportedNameClassHP.csv', 'a') as hp_export:
+                hp_export.write(get_total_damage_taken())
             string_victory = ("\nYou perform a courageous attack and strike the monster down!" +
                               "\nCongratulations! You are victorious and can go home!\n")
             slow_print(string_victory, 0.02)
@@ -68,6 +63,8 @@ def initiate_how_warm_cold():
         tries_left -= 1
 
     if tries_left == 0:
+        with open('exportedNameClassHP.csv', 'a') as hp_export:
+            hp_export.write(damage_taken)
         string_loss = ("\nThe monster rips you to shreds." +
                        "\nGame over :(\n")
         slow_print(string_loss, 0.02)

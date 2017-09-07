@@ -49,7 +49,9 @@ def menu_new_game():
     '''Starts a new game'''
     os.system("clear")
     create_character()
+    # --------- SET TIME FETCHER USING
     movement_core()
+    # --------- SET TIME FETCHER USING datetime
 
 
 def combat_encounter():
