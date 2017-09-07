@@ -4,7 +4,10 @@ import collections
 import sys
 import tty
 import termios
+import time
+from coldWarmHot import *
 from combatEngine import *
+from characterCreation import slow_print
 
 
 def getch():
@@ -17,6 +20,7 @@ def getch():
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
+
 
 
 def generate_map(level="mapTest.txt"):
@@ -37,7 +41,7 @@ def display_map(map_level):
 
 def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
              entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
-             wolf_symbol="☼"):
+             wolf_symbol="☼", boss_symbol="%"):
 
     '''Hero movement (WSAD) and displays the level map on screen.'''
     hero_x_position = 1
@@ -100,6 +104,11 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
         elif map_level[hero_y_position][hero_x_position] == wolf_symbol:
             combat_core(monster_type=wolf, monster_name="Wolf")
 
+        elif map_level[hero_y_position][hero_x_position] == boss_symbol:
+            string_boss_encounter = ("You encountered the big bad boss!" +
+                                     "\nGuess what the three numbers are to win, or else, you'll die miserably!\n")
+            slow_print(string_boss_encounter)
+            initiate_how_warm_cold()
         map_level[hero_y_position][hero_x_position] = hero_symbol
 
 def movement_core():
