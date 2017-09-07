@@ -5,7 +5,6 @@ import collections
 from classTemplates import *
 
 
-
 def print_class_attributes(attr_class, warrior, rogue, mage):
     ''' Print out the current class attribute table.'''
 

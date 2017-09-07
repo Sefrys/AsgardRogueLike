@@ -22,7 +22,6 @@ def getch():
     return ch
 
 
-
 def generate_map(level="mapTest.txt"):
     '''Generates level map from separate file'''
     level_map = []
@@ -55,8 +54,8 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
         if next_map is True:
             map_level = generate_map("mapTwo.txt")
             movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
-                         entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
-                         wolf_symbol="☼", boss_symbol="%" )
+                     entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
+                     wolf_symbol="☼", boss_symbol="%")
 
         display_map(map_level)
 
