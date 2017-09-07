@@ -16,7 +16,7 @@ def print_class_attributes(attr_class, warrior, rogue, mage):
     return(player_class_attr)
 
 
-def slow_print(string, delay=0):
+def slow_print(string, delay=.03):
     for i in string:
         sys.stdout.write(i)
         sys.stdout.flush()
@@ -61,13 +61,13 @@ def create_character():
         attr_class = mage
     elif player_class == "rogue":
         attr_class = rogue
-    time.sleep(0)
+    time.sleep(1.5)
 
     os.system("clear")
     # imported default class attribute dictionaries.
     player_class_attr = print_class_attributes(attr_class, warrior, rogue, mage)
 
-    time.sleep(0)
+    time.sleep(1.5)
     available_attribute_points = 5
     string_ask_attribute_distribution = ("\nNow that we can see your attributes, "
                                          + "let's improve them a little.\nI can give you at most "
@@ -93,7 +93,8 @@ def create_character():
                     try:
                         atr_increase = int(input("Increase it by: ").strip())
                         if atr_increase <= available_attribute_points:
-                            player_class_attr[str(target_attribute).upper()] = player_class_attr.get(str(target_attribute).upper()) + atr_increase
+                            player_class_attr[str(target_attribute).upper()] = \
+                                player_class_attr.get(str(target_attribute).upper()) + atr_increase
                             os.system("clear")
                             print("Your class attributes:\n")
                             for attr, value, in player_class_attr.items():
