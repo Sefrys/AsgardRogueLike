@@ -49,6 +49,7 @@ def initiate_how_warm_cold():
     tries_left = 10
 
     while tries_left > 0:
+        print(correct_answer)
         user_guess = get_user_input()
         result = compare_user_input_with_answer(user_guess, correct_answer)
         print(" ".join(result))
@@ -57,7 +58,7 @@ def initiate_how_warm_cold():
                               "\nCongratulations! You are victorious and can go home!\n")
             slow_print(string_victory, 0.02)
             time.sleep(2)
-            exit()
+            break
         tries_left -= 1
 
     if tries_left == 0:
@@ -65,4 +66,3 @@ def initiate_how_warm_cold():
                        "\nGame over :(\n")
         slow_print(string_loss, 0.02)
         time.sleep(2)
-        exit()

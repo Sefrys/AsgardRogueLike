@@ -72,7 +72,6 @@ def combat_sequence(damage_taken, player_derived_stats, monster_derived_stats, m
         and the damage is subtracted from the HP pool.
         Turns are repeated until someone dies.'''
 
-    
     with open('classPlayer.py') as class_file:
         player_attr = ast.literal_eval(class_file.readline())
     # get monster and player combat stats
@@ -156,6 +155,7 @@ def combat_sequence(damage_taken, player_derived_stats, monster_derived_stats, m
             else:
                 player_turn = True
     return(damage_taken)
+
 
 def dice_20_roll():
     '''Twenty sided dice thrown, returning the result'''

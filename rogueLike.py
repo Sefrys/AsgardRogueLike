@@ -1,5 +1,6 @@
 import os
 import sys
+import datetime
 from introScreen import *
 from menuContents import *
 from displayMenu import *
@@ -8,8 +9,13 @@ from movementMapDisplay import *
 from combatEngine import *
 
 
+def fetch_current_time():
+    current_time = datetime.datetime.now()
+    return(current_time)
+
+
 # Print story of game, wait for enter input/wait some time
-# to call display_menu_screen.
+# to call display_menu_screen
 def display_intro_screen():
     '''Displays the introduction screen'''
     introduction_title()
@@ -40,8 +46,19 @@ def display_menu_screen():
                 display_menu()
             else:
                 print("Number out of range")
-        except ValueError:
+        except TypeError:
             print("Invalid menu choice input")
+
+
+def fetch_play_time(start_time, stop_time):
+    time_diff = stop_time - start_time
+    time_diff = str(time_diff).strip(":")
+    time_diff = time_diff[2:7]
+    time_minutes_elapsed = time_diff[:2]
+    time_seconds_elasped = time_diff[3:]
+    time_elapsed = int(time_minutes_elapsed)*60 + int(time_seconds_elasped)
+    with open('exportedNameClassHP.csv', 'a') as highscore_file:
+        highscore_file.write(str(time_elapsed))
 
 
 # Initiates new game sequence; character creation
@@ -49,9 +66,13 @@ def menu_new_game():
     '''Starts a new game'''
     os.system("clear")
     create_character()
-    # --------- SET TIME FETCHER USING
-    movement_core()
-    # --------- SET TIME FETCHER USING datetime
+    start_time = fetch_current_time()
+    movement_core(start_time)
+
+def game_end(start_time):
+    stop_time = fetch_current_time()
+    fetch_play_time(start_time, stop_time)
+    exit()
 
 
 def combat_encounter():

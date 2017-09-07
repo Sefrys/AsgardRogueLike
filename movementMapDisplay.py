@@ -5,6 +5,7 @@ import sys
 import tty
 import termios
 import time
+from rogueLike import fetch_current_time, game_end
 from coldWarmHot import *
 from combatEngine import *
 from characterCreation import slow_print
@@ -38,7 +39,7 @@ def display_map(map_level):
         print(*char)
 
 
-def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
+def movement(start_time, map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
              entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
              wolf_symbol="☼", boss_symbol="%"):
     '''Hero movement (WSAD) and displays the level map on screen.'''
@@ -53,7 +54,7 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
 
         if next_map is True:
             map_level = generate_map("mapTwo.txt")
-            movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
+            movement(start_time, map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
                      entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
                      wolf_symbol="☼", boss_symbol="%")
 
@@ -112,10 +113,11 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
                                      "\nGuess what the three numbers are to win, or else, you'll die miserably!\n")
             slow_print(string_boss_encounter)
             initiate_how_warm_cold()
+            game_end(start_time)
         map_level[hero_y_position][hero_x_position] = hero_symbol
 
 
-def movement_core():
+def movement_core(start_time):
     '''Initializes movement and map display'''
     map_level = generate_map("mapOne.txt")
-    movement(map_level)
+    movement(start_time, map_level)

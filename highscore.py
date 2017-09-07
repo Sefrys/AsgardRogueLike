@@ -2,9 +2,6 @@ import csv
 import os.path
 
 
-time = 5
-
-
 def create_empty_highscore(filename="highscore.csv"):
     with open(filename, "w") as highscore_csv_file:
         highscore_file = csv.writer(highscore_csv_file, delimiter=",")
