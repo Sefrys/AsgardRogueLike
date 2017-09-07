@@ -16,7 +16,7 @@ def print_class_attributes(attr_class, warrior, rogue, mage):
     return(player_class_attr)
 
 
-def slow_print(string, delay=.01):
+def slow_print(string, delay=.0):
     for i in string:
         sys.stdout.write(i)
         sys.stdout.flush()
@@ -34,8 +34,8 @@ def create_character():
     while True:
         player_name = input("My name is: ").title().strip()
         if all(x.isalpha() or x.isspace() for x in player_name):
-            with open('currentSessionScore.csv', 'a') as highscore_file:
-                highscore_file.write(player_name + ",")
+            with open('exportedNameClassHP.csv', 'w') as name_class_export:
+                name_class_export.write(player_name + "\n")
 
             string_answer_valid_name = ("Very well, nice to meet you, " + player_name + ".\n"
                                         + "Now, are you a warrior, a mage, or a rogue?\n")
@@ -54,6 +54,8 @@ def create_character():
         else:
             string_answer_valid_class = ("A " + player_class + "? Good. Let's see what you are capable of then!\n")
             slow_print(string_answer_valid_class)
+            with open('exportedNameClassHP.csv', 'a') as name_class_export:
+                name_class_export.write(player_class)
             break
     if player_class == "warrior":
         attr_class = warrior
@@ -61,13 +63,13 @@ def create_character():
         attr_class = mage
     elif player_class == "rogue":
         attr_class = rogue
-    time.sleep(1.5)
+    time.sleep(0)
 
     os.system("clear")
     # imported default class attribute dictionaries.
     player_class_attr = print_class_attributes(attr_class, warrior, rogue, mage)
 
-    time.sleep(1.5)
+    time.sleep(0)
     available_attribute_points = 5
     string_ask_attribute_distribution = ("\nNow that we can see your attributes, "
                                          + "let's improve them a little.\nI can give you at most "
@@ -114,7 +116,7 @@ def create_character():
         print("{} ---- {}".format(attr, value))
     used_all_attributes = ("\nYou used all of your available attribute points!\n")
     slow_print(used_all_attributes)
-    time.sleep(1.5)
+    time.sleep(0)
 
     player_class_attr = dict(player_class_attr)
 
