@@ -38,6 +38,7 @@ def display_map(map_level):
 def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
              entrance_symbol="D", path_symbol=" ", cave_bat_symbol="&",
              wolf_symbol="☼"):
+
     '''Hero movement (WSAD) and displays the level map on screen.'''
     hero_x_position = 1
     hero_y_position = 7
