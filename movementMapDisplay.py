@@ -67,12 +67,8 @@ def movement(start_time, map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
         for attr, value, in player_stats.items():
             print('{} ---- {}'.format(attr, value))
 
-        key = getch()
+        key = getch().lower()
         os.system('clear')
-
-        # emergency exit
-        if key == "q":
-            exit()
 
         if key == "w":
             if (not map_level[hero_y_position - hero_step][hero_x_position] in wall_symbol and

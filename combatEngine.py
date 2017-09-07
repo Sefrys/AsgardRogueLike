@@ -41,19 +41,14 @@ def encounter_ui(damage_taken, monster_name, player_derived_stats, monster_deriv
     '''Open screen with choices upon monster encounter'''
     os.system('clear')
     print("You've encountered a " + monster_name + "!\n")
-    encounter_choices = ["FIGHT", "RUN", "GIVE UP"]
+    encounter_choices = ["FIGHT", "GIVE UP"]
     while True:
-        encounter_choice = input("Your options:\n - Fight\n - Run\n - Give Up\nWhat will you do?: ").upper()
+        encounter_choice = input("Your options:\n - Fight\n - Give Up\nWhat will you do?: ").upper()
         if encounter_choice.isalpha() and encounter_choice in encounter_choices:
             if encounter_choice == "FIGHT":
                 os.system('clear')
                 damage_taken = combat_sequence(damage_taken, player_derived_stats, monster_derived_stats,
                                                monster_type, dice_12_roll, dice_20_roll, dice_6_roll)
-                return(damage_taken)
-            elif encounter_choice == "RUN":
-                print("Coward!")
-                os.system('clear')
-                damage_taken = 0
                 return(damage_taken)
             elif encounter_choice == "GIVE UP":
                 game_over()
