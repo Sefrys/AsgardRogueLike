@@ -1,4 +1,14 @@
 import random
+import sys
+import time
+from characterCreation import slow_print
+
+
+def slow_print(string, delay=.03):
+    for i in string:
+        sys.stdout.write(i)
+        sys.stdout.flush()
+        time.sleep(delay)
 
 
 def get_random_digits():
@@ -12,7 +22,7 @@ def get_random_digits():
 
 def get_user_input():
     while True:
-        user_guess = input("Enter number: ")
+        user_guess = input("Enter a number: ")
         if user_guess.isalpha():
             print("Enter only digits")
         elif len(user_guess) != 3:
@@ -41,7 +51,7 @@ def check_result(hint_list):
         return True
 
 
-def main():
+def initiate_how_warm_cold():
     correct_answer = get_random_digits()
     tries_left = 10
 
@@ -51,12 +61,11 @@ def main():
         result = compare_user_input_with_answer(user_guess, correct_answer)
         print(result)
         if check_result(result):
-            print("WIN")
-            break
+            string_victory = ("\nYou perform a courageous attack and strike the monster down!" +
+                              "\nCongratulations! You are victorious and can go home!")
+            exit()
         tries_left -= 1
     if tries_left == 0:
-        print("Epic loss")
-
-
-if __name__ == '__main__':
-    main()
+        string_loss = ("\nThe monster rips you to shreds." +
+                       "\nGame over :(")
+        exit()
