@@ -2,6 +2,7 @@ import os
 import random
 import time
 import ast
+from gameOverDisplay import *
 from classMonsters import *
 
 
@@ -53,8 +54,9 @@ def encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
                 print("Coward!")
                 break
             elif encounter_choice == "GIVE UP":
-                print("GAME OVER")
-                break # --- SET GAME OVERSCREEN
+                game_over()
+                wait()
+                exit()
         else:
             print("Invalid input, try again.\n")
 
@@ -143,8 +145,9 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
                 print("You are defeated")
                 wait()
                 os.system('clear')
-                player_status = "defeated"
-                break
+                game_over()
+                wait()
+                exit()
             else:
                 player_turn = True
 
