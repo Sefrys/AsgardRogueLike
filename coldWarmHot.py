@@ -56,16 +56,20 @@ def initiate_how_warm_cold():
     tries_left = 10
 
     while tries_left > 0:
-
         user_guess = get_user_input()
         result = compare_user_input_with_answer(user_guess, correct_answer)
-        print(result)
+        print(" ".join(result))
         if check_result(result):
             string_victory = ("\nYou perform a courageous attack and strike the monster down!" +
-                              "\nCongratulations! You are victorious and can go home!")
+                              "\nCongratulations! You are victorious and can go home!\n")
+            slow_print(string_victory, 0.02)
+            time.sleep(2)
             exit()
         tries_left -= 1
+
     if tries_left == 0:
         string_loss = ("\nThe monster rips you to shreds." +
-                       "\nGame over :(")
+                       "\nGame over :(\n")
+        slow_print(string_loss, 0.02)
+        time.sleep(2)
         exit()

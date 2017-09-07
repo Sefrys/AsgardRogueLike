@@ -111,6 +111,7 @@ def movement(map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
             initiate_how_warm_cold()
         map_level[hero_y_position][hero_x_position] = hero_symbol
 
+
 def movement_core():
     '''Initializes movement and map display'''
     map_level = generate_map("mapOne.txt")

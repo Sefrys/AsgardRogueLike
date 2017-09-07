@@ -52,6 +52,7 @@ def encounter_ui(monster_name, player_derived_stats, monster_derived_stats,
                 break
             elif encounter_choice == "RUN":
                 print("Coward!")
+                os.system('clear')
                 break
             elif encounter_choice == "GIVE UP":
                 game_over()
@@ -87,8 +88,10 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
     monster_initiative = dice_20_roll()
 
     if player_initiative >= monster_initiative:
+        print("\nYou surprise the monster and attack first!\n")
         player_turn = True
     else:
+        print("\nThe monster gets the drop on you!\n")
         player_turn = False
 
     while True:
@@ -96,7 +99,7 @@ def combat_sequence(player_derived_stats, monster_derived_stats, monster_type,
             player_hit_accuracy = player_ACC + dice_12_roll()
             player_miss_chance = monster_EVA + dice_12_roll()
             if player_hit_accuracy > player_miss_chance:
-                damage_roll = player_attr["STR"] - dice_6_roll()
+                damage_roll = player_attr["STR"] + player_attr["INT"]-2 - dice_6_roll()
                 if damage_roll > 0:
                     monster_HP -= damage_roll
                 print("Player HP: " + str(player_HP) + "\nOpponent HP: " + str(monster_HP))

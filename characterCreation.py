@@ -16,7 +16,7 @@ def print_class_attributes(attr_class, warrior, rogue, mage):
     return(player_class_attr)
 
 
-def slow_print(string, delay=.03):
+def slow_print(string, delay=.01):
     for i in string:
         sys.stdout.write(i)
         sys.stdout.flush()
@@ -114,6 +114,7 @@ def create_character():
         print("{} ---- {}".format(attr, value))
     used_all_attributes = ("\nYou used all of your available attribute points!\n")
     slow_print(used_all_attributes)
+    time.sleep(1.5)
 
     player_class_attr = dict(player_class_attr)
 
