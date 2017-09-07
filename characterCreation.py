@@ -15,7 +15,7 @@ def print_class_attributes(attr_class, warrior, rogue, mage):
     return(player_class_attr)
 
 
-def slow_print(string, delay=.0):
+def slow_print(string, delay=.03):
     for i in string:
         sys.stdout.write(i)
         sys.stdout.flush()
