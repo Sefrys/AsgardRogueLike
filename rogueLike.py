@@ -7,6 +7,7 @@ from displayMenu import *
 from characterCreation import *
 from movementMapDisplay import *
 from combatEngine import *
+from highscore import *
 
 
 def fetch_current_time():
@@ -26,6 +27,7 @@ def display_menu_screen():
     '''Displays the menu screen and asks for sub-menu choice'''
     display_menu()
     while True:
+        choices_for_menu = [1, 2, 3, 4, 5]
         try:
             choice_menu = int(input("What do you want to choose: "))
             os.system("clear")
@@ -44,10 +46,13 @@ def display_menu_screen():
             elif choice_menu == 5:
                 exit_game()
                 display_menu()
-            else:
+            elif choice_menu not in choices_for_menu:
+                display_menu()
                 print("Number out of range")
-        except TypeError:
+        except ValueError:
             print("Invalid menu choice input")
+            os.system('clear')
+            display_menu()
 
 
 def fetch_play_time(start_time, stop_time):
@@ -59,6 +64,7 @@ def fetch_play_time(start_time, stop_time):
     time_elapsed = int(time_minutes_elapsed)*60 + int(time_seconds_elasped)
     with open('exportedNameClassHP.csv', 'a') as highscore_file:
         highscore_file.write(str(time_elapsed))
+    highscore_core()
 
 
 # Initiates new game sequence; character creation
@@ -68,6 +74,7 @@ def menu_new_game():
     create_character()
     start_time = fetch_current_time()
     movement_core(start_time)
+
 
 def game_end(start_time):
     stop_time = fetch_current_time()

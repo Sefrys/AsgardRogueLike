@@ -1,3 +1,11 @@
-Time [s],Name,Class,HP
+Time [s],Name,Class,Lost HP
 5,Dupa,warrior,15
 5,Dupa,warrior,15
+10,Adgaui,mage,0
+10,Adgaui,mage,0
+24,Mo,warrior,41
+27,Nerd,mage,1
+28,Nerd,rogue,4
+35,Test Shit,rogue,47
+75,Dex,rogue,5
+121,Af,rogue,10

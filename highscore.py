@@ -22,7 +22,7 @@ def check_highscore(filename="highscore.csv"):
             return False, count
 
 
-def fill_highscore(check, count, time, filename="highscore.csv"):
+def fill_highscore(check, count, filename="highscore.csv"):
     header = ["Time [s]", "Name", "Class", "Lost HP"]
     name = ""
     hero_class = ""
@@ -34,6 +34,7 @@ def fill_highscore(check, count, time, filename="highscore.csv"):
         name = current_hero_stats[0]
         hero_class = current_hero_stats[1]
         lost_hp = current_hero_stats[2]
+        time = current_hero_stats[3]
     with open(filename, "r") as highscore_csv_file:
         highscore_file = csv.reader(highscore_csv_file, delimiter=",")
         hero_score = [int(time), name, hero_class, lost_hp]
@@ -66,7 +67,6 @@ def fill_highscore(check, count, time, filename="highscore.csv"):
                 only_scores.append(highscore[i])
             only_scores.append(hero_score)
             highscore = sorted(only_scores, key=lambda x: int(x[0]))
-            print(highscore)
             for line in highscore:
                 highscore_file.writerow(line)
 
@@ -83,19 +83,14 @@ def display_highscore(filename="highscore.csv"):
             for character in row:
                 row_lenght += 1
 
-        print("------HALL OF FAME------")
+        print("\n------HALL OF FAME------")
         print("_" * row_lenght)
         for row in highscore:
             print(*row)
         print("_" * row_lenght)
 
 
-def main():
-    # if not os.path.exists("highscore.csv"):
-    #     create_empty_highscore()
-    # check, count = check_highscore()
-    # fill_highscore(check, count, time)
+def highscore_core():
+    check, count = check_highscore()
+    fill_highscore(check, count)
     display_highscore()
-
-
-main()

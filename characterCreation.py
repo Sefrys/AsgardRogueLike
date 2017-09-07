@@ -32,7 +32,7 @@ def create_character():
 
     while True:
         player_name = input("My name is: ").title().strip()
-        if all(x.isalpha() or x.isspace() for x in player_name):
+        if all(x.isalpha() or x.isspace() for x in player_name) and player_name is not "":
             with open('exportedNameClassHP.csv', 'w') as name_class_export:
                 name_class_export.write(player_name + "\n")
 

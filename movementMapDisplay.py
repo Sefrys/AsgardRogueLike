@@ -108,7 +108,7 @@ def movement(start_time, map_level, hero_symbol="♦", wall_symbol=["◙", "#"],
 
         elif map_level[hero_y_position][hero_x_position] == boss_symbol:
             with open('exportedNameClassHP.csv', 'a') as hp_export:
-                hp_export.write("\n" + str(damage_taken))
+                hp_export.write("\n" + str(damage_taken) + "\n")
             string_boss_encounter = ("You encountered the big bad boss!" +
                                      "\nGuess what the three numbers are to win, or else, you'll die miserably!\n")
             slow_print(string_boss_encounter)
